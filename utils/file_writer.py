@@ -1,6 +1,7 @@
 import pandas as pd
 from pathlib import Path
-from utils.file_reader import DATA_DIR
+
+DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 
 def save_csv(df: pd.DataFrame, filename: str):
     """
