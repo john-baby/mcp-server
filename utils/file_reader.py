@@ -1,21 +1,18 @@
-from server import mcp
-from utils.file_reader import read_csv
+import pandas as pd
+from pathlib import Path
 
-@mcp.tool()
-def get_leave_balance(employee_id: int) -> str:
+DATA_DIR = Path(__file__).resolve().parent.parent / "data"
+
+def read_csv(filename: str) -> str:
     """
-    Given an employee ID, return the leave balance for that employee from attendance.csv.
+    Read a CSV file and returns the pandas dataframe of that csv.
 
     Args:
-        employee_id: The ID of the employee.
+        filename: Name of the CSV file (e.g. 'sample.csv')
 
     Returns:
-        A string describing the employee's leave balance.
+        A pandas dataframe object.
     """
-    df = read_csv('attendance.csv')
-    row = df[df['id'] == employee_id]
-    if row.empty:
-        return f"Employee with ID {employee_id} not found."
-    name = row.iloc[0]['name']
-    leave_balance = row.iloc[0]['leave_balance']
-    return f"Employee: {name} (ID: {employee_id}) has a leave balance of {leave_balance}."
+    file_path = DATA_DIR / filename
+    df = pd.read_csv(file_path)
+    return df
