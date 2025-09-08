@@ -11,7 +11,7 @@ def apply_leave(employee_id: int) -> str:
         employee_id: The ID of the employee.
 
     Returns:
-        A string describing the updated leave balance.
+        A string describing the updated leave balance along with their name.
     """
     df = read_csv('attendance.csv')
     row = df[df['id'] == employee_id]
