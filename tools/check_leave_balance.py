@@ -4,13 +4,13 @@ from utils.file_reader import read_csv
 @mcp.tool()
 def get_leave_balance(employee_id: int) -> str:
     """
-    Given an employee ID, return the leave balance for that employee from attendance.csv.
+    Given an employee ID, return the leave balance and the name for that employee from attendance.csv.
 
     Args:
         employee_id: The ID of the employee.
 
     Returns:
-        A string describing the employee's leave balance.
+        A string describing the employee's leave balance and name.
     """
     df = read_csv('attendance.csv')
     row = df[df['id'] == employee_id]
